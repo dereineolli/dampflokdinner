@@ -15,30 +15,28 @@
 </head>
 
 <body>
-
-    <header>
-        <div class="row column">
-            <h1>Dampflokdinner Mission Control</h1>
-        </div>
-    </header>
-    <main class="row pure-g">
-        <div v-for="section in sections" class="columns pure-u-1-4" :class="section.name">
-            <h3>
-                <i class="material-icons">{{ section.icon }}</i> {{ section.text }}
-            </h3>
-            <ul :id="section.name">
-                <li v-for="(train, index) in section.trains">
-                    <div class="train" :class="train.name" v-on:click="moveTrain(train, section)">
-                        <div class="desc">{{train.name}}</div>
-                        <div class="rail">{{train.rail}}</div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </main>
-
-
-
+    <div id="page">
+        <header>
+            <div class="row column">
+                <h1>Dampflokdinner Mission Control</h1>
+            </div>
+        </header>
+        <main class="row pure-g">
+            <section v-for="section in sections" class="columns pure-u-1-4" :class="section.name">
+                <h3>
+                    <i class="material-icons">{{ section.icon }}</i> {{ section.text }}
+                </h3>
+                <ul :id="section.name">
+                    <li v-for="(train, index) in section.trains">
+                        <div class="train" :class="train.name" v-on:click="moveTrain(train, section)">
+                            <div class="desc">{{train.name}}</div>
+                            <div class="rail">{{train.rail}}</div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </div>
 
     <script src="https://vuejs.org/js/vue.js"></script>
     <script src="config.js"></script>
