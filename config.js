@@ -20,7 +20,7 @@ var trains = [{
     name: "648",
     rail: 1
 }];
-var settings = {
+var defaultConfig = {
     sections: [{
         name: "state-ready",
         icon: "schedule",

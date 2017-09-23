@@ -18,11 +18,11 @@
     <div id="page">
         <header>
             <div class="row column">
-                <h1>Dampflokdinner Mission Control</h1>
+                <h1 v-on:click="clearCache">Dampflokdinner Mission Control</h1>
             </div>
         </header>
         <main class="row pure-g">
-            <section v-for="section in sections" class="columns pure-u-1-4" :class="section.name">
+            <section v-for="section in config.sections" class="columns pure-u-1-4" :class="section.name">
                 <h3>
                     <i class="material-icons">{{ section.icon }}</i> {{ section.text }}
                 </h3>
@@ -42,19 +42,41 @@
     <script src="config.js"></script>
 
     <script>
+        var STORAGE_KEY = 'ddd-config'
+        var settingsStorage = {
+            fetch: function() {
+                var settings = JSON.parse(localStorage.getItem(STORAGE_KEY)) || defaultConfig;
+                return settings;
+            },
+            save: function(settings) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+            },
+            remove: function() {
+                localStorage.removeItem(STORAGE_KEY);
+            }
+        }
         var app = new Vue({
-            el: 'main',
-            data: settings,
+            el: '#page',
+            data: {
+                config: settingsStorage.fetch()
+            },
             methods: {
                 moveTrain: function(train, section) {
-
-                    var oldIndex = this.sections.indexOf(section);
-                    var newIndex = oldIndex + 1 >= this.sections.length ? 0 : oldIndex + 1;
+                    var config = this.config;
+                    var oldIndex = config.sections.indexOf(section);
+                    var newIndex = oldIndex + 1 >= config.sections.length ? 0 : oldIndex + 1;
                     var trainIndex = section.trains.indexOf(train);
 
-                    console.log("moving train (" + train.name + ") from " + this.sections[oldIndex].name + " to " + this.sections[newIndex].name);
-                    this.sections[oldIndex].trains.splice(trainIndex, 1);
-                    this.sections[newIndex].trains.push(train);
+                    console.log("moving train (" + train.name + ") from " + config.sections[oldIndex].name + " to " + config.sections[newIndex].name);
+                    config.sections[oldIndex].trains.splice(trainIndex, 1);
+                    config.sections[newIndex].trains.push(train);
+                    settingsStorage.save(this.config);
+                },
+                clearCache: function() {
+                    if (confirm("Reset?")) {
+                        settingsStorage.remove();
+                        location.reload();
+                    }
                 }
             }
         });
