@@ -1,0 +1,126 @@
+//colors
+$color_header_gradient_base: #474747;
+$color_header_gradient_start: #474747;
+$color_header_gradient_end: #474747;
+$color_header_text: #eee;
+$color_header_text_shadow: #333333;
+$color_column_border: #e0e0e0;
+$color_state_ready: #4caf50;
+$color_state_onway: #2196f3;
+$color_state_return: #FF5722;
+$color_train_background: #424242;
+$color_train_text: #fff; //lighten($color_train_background, lightness($color_train_background));
+$color_train_text_shadow: darken($color_train_background, 30%); //fonts
+$font_main: Work Sans;
+$font_fallback: sans-serif;
+$font_header: Dosis;
+@import 'https://fonts.googleapis.com/css?family=Black+Ops+One|Dosis|Hind+Siliguri|Work+Sans';
+html {
+    font-size: 1vw;
+}
+
+body {
+    height: 100vh;
+    font-family: $font_main, $font_fallback;
+}
+
+h1,
+h2,
+h3 {
+    font-family: $font_header, $font_fallback;
+    font-variant: small-caps;
+    &:first-letter {
+        font-weight: bold;
+    }
+}
+
+ul {
+    list-style-type: none;
+}
+
+.material-icons {
+    font-variant: normal;
+}
+
+.off-canvas-content {
+    height: 100vh;
+    height: 100vh;
+}
+
+.off-canvas {
+    height: 100vh;
+    z-index: -1 !important;
+}
+
+header {
+    background-color: $color_header_gradient_base;
+    background: $color_header_gradient_start;
+    background: linear-gradient(to left, $color_header_gradient_start, $color_header_gradient_end);
+    color: $color_header_text;
+    text-shadow: 1px 1px $color_header_text_shadow;
+    .row {
+        text-align: center;
+        padding: 0.5rem;
+    }
+}
+
+main.row {
+    overflow-x: auto;
+    max-width: inherit;
+    flex-flow: row;
+    .columns {
+        text-align: center;
+        height: calc(100vh - 130px - 0.9375rem);
+        border-left: 1px solid $color_column_border;
+        white-space: nowrap;
+        margin-top: 0.9375rem;
+        &:first-child {
+            border-left: none !important;
+        }
+        h3 {
+            border-bottom: 1px solid $color_column_border;
+            i {
+                vertical-align: middle;
+                line-height: inherit;
+                font-size: 3.5rem;
+            }
+        }
+    }
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+    main .columns {
+        flex: none;
+    }
+}
+
+.state-ready {
+    i {
+        color: $color_state_ready;
+    }
+}
+
+.state-station {
+    i {
+        color: $color_state_ready;
+    }
+}
+
+.state-onway {
+    i {
+        color: $color_state_onway;
+    }
+}
+
+.state-return {
+    i {
+        color: $color_state_return;
+    }
+}
+
+#station {
+    text-align: center;
+}
+
+@import "trains";
+@import "checkbox";

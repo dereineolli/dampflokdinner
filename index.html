@@ -1,0 +1,107 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="height=device-height, initial-scale=1.0">
+    <title>Dampflokdinner Mission Control</title>
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="row column">
+            <h1>Dampflokdinner Mission Control</h1>
+        </div>
+    </header>
+    <main class="row">
+        <div v-for="section in sections" class="columns" :class="section.name">
+            <h3>
+                <i class="material-icons">{{ section.icon }}</i> {{ section.text }}
+            </h3>
+            <ul :id="section.name">
+                <li v-for="(train, index) in section.trains">
+                    <div class="train" :class="train.name" v-on:click="moveTrain(train, section)">
+                        <div class="desc">{{train.name}}</div>
+                        <div class="rail">{{train.rail}}</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+
+
+
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+
+    <script>
+        $(document).foundation();
+
+        var trains = [{
+            name: "648",
+            rail: 1
+        }, {
+            name: "51",
+            rail: 1
+        }, {
+            name: "2",
+            rail: 2
+        }, {
+            name: "7844",
+            rail: 1
+        }, {
+            name: "648",
+            rail: 1
+        }];
+        var settings = {
+            sections: [{
+                name: "state-ready",
+                icon: "schedule",
+                text: "Bereit",
+                trains: trains
+            }, {
+                name: "state-onway",
+                icon: "send",
+                text: "Unterwegs",
+                trains: []
+            }, {
+                name: "state-return",
+                icon: "vertical_align_bottom",
+                text: "Rückfahrt",
+                trains: []
+            }, {
+                name: "state-station",
+                icon: "check_circle",
+                text: "Bahnhof",
+                trains: []
+            }]
+        };
+
+        var app = new Vue({
+            el: 'main',
+            data: settings,
+            methods: {
+                moveTrain: function(train, section) {
+
+                    console.log(train);
+
+                    var oldIndex = this.sections.indexOf(section);
+                    var newIndex = oldIndex + 1 >= this.sections.length ? 0 : oldIndex + 1;
+                    var trainIndex = section.trains.indexOf(train);
+                    this.sections[oldIndex].trains.splice(trainIndex, 1);
+                    this.sections[newIndex].trains.push(train);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

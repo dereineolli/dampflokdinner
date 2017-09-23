@@ -1,0 +1,103 @@
+$train_font_size: 3.2rem;
+$train_space_between: 20px;
+.train {
+    display: inline-block;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    border-radius: 10px;
+    font-size: $train_font_size;
+    margin-bottom: $train_space_between / 2;
+    margin-top: $train_space_between / 2;
+    transition: all cubic-bezier(.55, 0, .1, 1) 150ms;
+    background-position: center right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    min-width: 15vw;
+    text-align: left;
+    text-shadow: 1px 1px $color_train_text_shadow;
+    color: #fff;
+    .desc {
+        text-align: center;
+        padding: 10px;
+        background-color: $color_train_background;
+        color: $color_train_text;
+        border-radius: 10px;
+        box-shadow: 2px 0 5px -3px #000;
+        display: block;
+        min-width: 50%;
+    }
+    .rail {
+        display: none;
+    }
+}
+
+.state-return .train {
+    animation: blink-return 2s infinite;
+    .desc {
+        display: inline-block;
+        border-radius: 10px 0 0 10px;
+    }
+    .rail {
+        display: inline-block;
+        padding-right: 10px;
+        font-weight: bold;
+        &:before {
+            content: "\2192";
+        }
+    }
+}
+
+.state-station .train {
+    background-color: #4caf50;
+    &.reverse {
+        .rail:after {
+            content: "\21B9";
+        }
+    }
+    .desc {
+        display: inline-block;
+        border-radius: 10px 0 0 10px;
+    }
+    .rail {
+        display: inline-block;
+        padding-right: 10px;
+        font-weight: bold;
+        &:after {
+            content: "\2192";
+        }
+    }
+}
+
+.state-onway .train {
+    .desc {
+        animation-name: none;
+        animation-iteration-count: 50;
+    }
+    &:last-child .desc {
+        animation: blink-onway 2s;
+    }
+}
+
+@keyframes blink-return {
+    0% {
+        background: #ffc107;
+    }
+    50% {
+        background: #ffa000;
+    }
+    100% {
+        background: #ffc107;
+    }
+}
+
+@keyframes blink-onway {
+    0% {
+        background: #424242;
+    }
+    50% {
+        background: rgba(66, 66, 66, 0.7);
+    }
+    100% {
+        background: #424242;
+    }
+}
