@@ -1,23 +1,23 @@
 var trains = [{
-    name: "18",
-    rail: 1
-}, {
-    name: "38",
-    rail: 1
-}, {
-    name: "51",
-    rail: 2
-}, {
-    name: "4877",
-    rail: 1
-}, {
     name: "685",
     rail: 1
 }, {
     name: "2",
     rail: 1
 }, {
+    name: "18",
+    rail: 3
+}, {
+    name: "4877",
+    rail: 4
+}, {
     name: "648",
+    rail: 2
+}, {
+    name: "2",
+    rail: 1
+}, {
+    name: "38",
     rail: 1
 }];
 var defaultConfig = {
