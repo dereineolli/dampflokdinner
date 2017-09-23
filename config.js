@@ -16,6 +16,9 @@ var trains = [{
 }, {
     name: "38",
     rail: 1
+}, {
+    name: "51",
+    rail: 1
 }];
 var defaultConfig = {
     sections: [{
