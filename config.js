@@ -1,26 +1,20 @@
 var trains = [{
-    name: "648",
+    name: "18",
+    rail: 1
+}, {
+    name: "38",
     rail: 1
 }, {
     name: "51",
+    rail: 2
+}, {
+    name: "4877",
+    rail: 1
+}, {
+    name: "685",
     rail: 1
 }, {
     name: "2",
-    rail: 2
-}, {
-    name: "15 V200",
-    rail: 1
-}, {
-    name: "7488",
-    rail: 1
-}, {
-    name: "648",
-    rail: 1
-}, {
-    name: "648",
-    rail: 1
-}, {
-    name: "648",
     rail: 1
 }, {
     name: "648",

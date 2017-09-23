@@ -25,6 +25,7 @@ $train_space_between: 20px;
         box-shadow: 2px 0 5px -3px #000;
         display: block;
         min-width: 50%;
+        box-sizing: border-box;
     }
     .rail {
         display: none;
