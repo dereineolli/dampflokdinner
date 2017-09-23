@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="height=device-height, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dampflokdinner Mission Control</title>
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
@@ -38,52 +38,15 @@
 
 
     <script src="https://vuejs.org/js/vue.js"></script>
+    <!--
     <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
+-->
+    <script src="config.js"></script>
 
     <script>
-        $(document).foundation();
-
-        var trains = [{
-            name: "648",
-            rail: 1
-        }, {
-            name: "51",
-            rail: 1
-        }, {
-            name: "2",
-            rail: 2
-        }, {
-            name: "7844",
-            rail: 1
-        }, {
-            name: "648",
-            rail: 1
-        }];
-        var settings = {
-            sections: [{
-                name: "state-ready",
-                icon: "schedule",
-                text: "Bereit",
-                trains: trains
-            }, {
-                name: "state-onway",
-                icon: "send",
-                text: "Unterwegs",
-                trains: []
-            }, {
-                name: "state-return",
-                icon: "vertical_align_bottom",
-                text: "Rückfahrt",
-                trains: []
-            }, {
-                name: "state-station",
-                icon: "check_circle",
-                text: "Bahnhof",
-                trains: []
-            }]
-        };
+        //$(document).foundation();
 
         var app = new Vue({
             el: 'main',
@@ -91,11 +54,11 @@
             methods: {
                 moveTrain: function(train, section) {
 
-                    console.log(train);
-
                     var oldIndex = this.sections.indexOf(section);
                     var newIndex = oldIndex + 1 >= this.sections.length ? 0 : oldIndex + 1;
                     var trainIndex = section.trains.indexOf(train);
+
+                    console.log("moving train (" + train.name + ") from " + this.sections[oldIndex].name + " to " + this.sections[newIndex].name);
                     this.sections[oldIndex].trains.splice(trainIndex, 1);
                     this.sections[newIndex].trains.push(train);
                 }

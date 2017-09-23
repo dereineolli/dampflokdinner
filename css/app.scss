@@ -42,16 +42,6 @@ ul {
     font-variant: normal;
 }
 
-.off-canvas-content {
-    height: 100vh;
-    height: 100vh;
-}
-
-.off-canvas {
-    height: 100vh;
-    z-index: -1 !important;
-}
-
 header {
     background-color: $color_header_gradient_base;
     background: $color_header_gradient_start;
@@ -70,7 +60,7 @@ main.row {
     flex-flow: row;
     .columns {
         text-align: center;
-        height: calc(100vh - 130px - 0.9375rem);
+        min-height: calc(100vh - 60px - 0.9375rem);
         border-left: 1px solid $color_column_border;
         white-space: nowrap;
         margin-top: 0.9375rem;
