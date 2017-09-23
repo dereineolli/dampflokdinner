@@ -14,9 +14,6 @@ var trains = [{
     name: "648",
     rail: 2
 }, {
-    name: "2",
-    rail: 1
-}, {
     name: "38",
     rail: 1
 }];
